@@ -1,28 +1,16 @@
-import { api } from "../utils/Api";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Card } from "../components/Card";
 import buttonUserNameImage from "../images/icons/Vector.png";
 import buttonAddNewImage from "../images/icons/plus.png";
 import CurrentUserContext from '../contexts/CurrentUserContext'
 
-export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-    const userContext = useContext(CurrentUserContext);
-    const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-        api.getCards()
-            .then((cardsData) => {
-                setCards(cardsData);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
+    const currentUser = useContext(CurrentUserContext);
 
     return (
         <main className="main">
             <section className="profile">
-                <img className="profile__image" src={userContext.avatar} alt="Аватар" />
+                <img className="profile__image" src={currentUser.avatar ? currentUser.avatar : '#'} alt="Аватар" />
                 <button
                     className="profile__image-button"
                     type="button"
@@ -30,7 +18,7 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                 ></button>
                 <div className="profile__user-info">
                     <div className="profile__input-info">
-                        <h1 className="profile__name">{userContext.name}</h1>
+                        <h1 className="profile__name">{currentUser.name ? currentUser.name : ''}</h1>
                         <button
                             type="button"
                             onClick={onEditProfile}
@@ -43,7 +31,7 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                             />
                         </button>
                     </div>
-                    <p className="profile__job-title">{userContext.about}</p>
+                    <p className="profile__job-title">{currentUser.about ? currentUser.about : ''}</p>
                 </div>
                 <button
                     type="button"
@@ -64,6 +52,8 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                             key={card._id}
                             card={card}
                             onCardClick={onCardClick}
+                            onCardLike = {onCardLike}
+                            onCardDelete = {onCardDelete}
                         />
                     ))}
                 </ul>

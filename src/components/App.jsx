@@ -17,17 +17,10 @@ function App(props) {
     const [selectedCard, setSelectedCard] = useState({});
     const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({})
+    const [cards, setCards] = useState([]);
 
-    useEffect(() => {
-        api.getUser()
-            .then((userData) => {
-                setCurrentUser(userData);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
 
+    
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
@@ -54,6 +47,31 @@ function App(props) {
         setSelectedCard({});
     }
 
+    function handleCardLike(card) {
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        api.addLike(card._id, !isLiked).then((newCard) => {
+            setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        });
+    }
+
+    function handleCardDelete (card) {
+        api.deleteLike(card._id)
+        .then(() => {
+            setCards(prevCards => prevCards.filter(prevCard => prevCard._id !== card._id));
+        })        
+    }
+    
+    useEffect(() => {
+        Promise.all([api.getUser(), api.getCards()])
+            .then(([userData, cardsData]) => {
+                setCurrentUser(userData);
+                setCards(cardsData)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <>
             <CurrentUserContext.Provider value={currentUser}>
@@ -65,6 +83,9 @@ function App(props) {
                             onAddPlace={handleAddPlaceClick}
                             onEditAvatar={handleEditAvatarClick}
                             onCardClick={handleCardClick}
+                            cards = {cards}
+                            onCardLike = {handleCardLike}
+                            onCardDelete = {handleCardDelete}
                         />
                     </div>
                     <Footer />

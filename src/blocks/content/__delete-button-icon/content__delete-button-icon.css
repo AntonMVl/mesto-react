@@ -1,5 +1,5 @@
 .content__delete-button-icon {
-    display: none;
+    display: block;
     transition: opacity 0.4s;
 }
 
