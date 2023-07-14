@@ -19,9 +19,6 @@ function App(props) {
     const [currentUser, setCurrentUser] = useState({})
     const [cards, setCards] = useState([]);
 
-
-    
-
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
     }
@@ -45,20 +42,6 @@ function App(props) {
         setIsEditAvatarPopupOpen(false);
         setIsImagePopupOpen(false);
         setSelectedCard({});
-    }
-
-    function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
-        api.addLike(card._id, !isLiked).then((newCard) => {
-            setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        });
-    }
-
-    function handleCardDelete (card) {
-        api.deleteLike(card._id)
-        .then(() => {
-            setCards(prevCards => prevCards.filter(prevCard => prevCard._id !== card._id));
-        })        
     }
     
     useEffect(() => {
@@ -84,8 +67,6 @@ function App(props) {
                             onEditAvatar={handleEditAvatarClick}
                             onCardClick={handleCardClick}
                             cards = {cards}
-                            onCardLike = {handleCardLike}
-                            onCardDelete = {handleCardDelete}
                         />
                     </div>
                     <Footer />

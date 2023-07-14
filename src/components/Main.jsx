@@ -4,7 +4,7 @@ import buttonUserNameImage from "../images/icons/Vector.png";
 import buttonAddNewImage from "../images/icons/plus.png";
 import CurrentUserContext from '../contexts/CurrentUserContext'
 
-export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
+export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards }) {
     const currentUser = useContext(CurrentUserContext);
 
     return (
@@ -52,8 +52,6 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, car
                             key={card._id}
                             card={card}
                             onCardClick={onCardClick}
-                            onCardLike = {onCardLike}
-                            onCardDelete = {onCardDelete}
                         />
                     ))}
                 </ul>
