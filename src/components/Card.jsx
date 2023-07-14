@@ -7,7 +7,8 @@ import { LikeButton } from "./LikeButton";
 export function Card({ card, onCardClick}) {
     const currentUser = useContext(CurrentUserContext);
     const isOwn = card.owner._id === currentUser._id;
-
+    
+    
     function handleClick() {
         onCardClick(card)
     }
