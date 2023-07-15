@@ -1,9 +1,10 @@
-export function ImagePopup({ card, onClose, isOpen }) {
+export function ImagePopup({ card, onClose, isOpen, onClickOverlay }) {
     return (
         <section
             className={`popup popup_color_background-dark popup_type_open-img ${
                 isOpen ? "popup_opened" : ""
             }`}
+            onClick={onClickOverlay}
         >
             <div className="popup__container">
                 <button

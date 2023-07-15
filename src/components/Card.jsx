@@ -4,10 +4,9 @@ import CurrentUserContext from '../contexts/CurrentUserContext'
 import { LikeButton } from "./LikeButton";
 
 
-export function Card({ card, onCardClick}) {
+export function Card({ card, onCardClick, onDeleteCardClick}) {
     const currentUser = useContext(CurrentUserContext);
     const isOwn = card.owner._id === currentUser._id;
-    
     
     function handleClick() {
         onCardClick(card)
@@ -28,7 +27,7 @@ export function Card({ card, onCardClick}) {
                     <LikeButton card={card} />
                 </div>
             </div>
-            {isOwn && <button className="content__delete-button">
+            {isOwn && <button className="content__delete-button" onClick={()=> onDeleteCardClick(card._id)}>
                 <img
                     src={deleteImage}
                     alt="Удаление"
