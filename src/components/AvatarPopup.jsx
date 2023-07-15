@@ -1,15 +1,20 @@
-import { useRef } from "react";
-import { PopupWithForm } from "./PopupWithForm";
+import { useRef } from 'react';
+import { PopupWithForm } from './PopupWithForm';
 
-export function AvatarPopup({isOpen, onClose, onUpdateAvatar, onClickOverlay}) {
-    const avatarRef = useRef(null)
-    
+export function AvatarPopup({
+    isOpen,
+    onClose,
+    onUpdateAvatar,
+    onClickOverlay,
+}) {
+    const avatarRef = useRef(null);
+
     function handleSubmit(e) {
         e.preventDefault();
         onUpdateAvatar({
             avatar: avatarRef.current.value,
         });
-    } 
+    }
 
     return (
         <PopupWithForm
@@ -26,7 +31,7 @@ export function AvatarPopup({isOpen, onClose, onUpdateAvatar, onClickOverlay}) {
                     <input
                         id="avatar"
                         type="url"
-                        className='popup__form-input popup__form-input_avatar-name'
+                        className="popup__form-input popup__form-input_avatar-name"
                         autoComplete="off"
                         required
                         name="avatar"

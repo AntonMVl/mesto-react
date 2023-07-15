@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { PopupWithForm } from "./PopupWithForm";
+import { useState } from 'react';
+import { PopupWithForm } from './PopupWithForm';
 
-export function AddPlacePopup({isOpen, onClose, onUpdateCards, onClickOverlay}) {
-
-    const [imageName, setImageName] = useState("");
-    const [imageLink, setImageLink] = useState("");
+export function AddPlacePopup({
+    isOpen,
+    onClose,
+    onUpdateCards,
+    onClickOverlay,
+}) {
+    const [imageName, setImageName] = useState('');
+    const [imageLink, setImageLink] = useState('');
 
     function handleNameChange(e) {
         setImageName(e.target.value);
@@ -34,7 +38,7 @@ export function AddPlacePopup({isOpen, onClose, onUpdateCards, onClickOverlay}) 
                     <input
                         id="place"
                         type="text"
-                        className='popup__form-input popup__form-input_card_name'
+                        className="popup__form-input popup__form-input_card_name"
                         autoComplete="off"
                         required
                         minLength="2"
@@ -50,7 +54,7 @@ export function AddPlacePopup({isOpen, onClose, onUpdateCards, onClickOverlay}) 
                     <input
                         id="url"
                         type="url"
-                        className='popup__form-input popup__form-input_card_url'
+                        className="popup__form-input popup__form-input_card_url"
                         autoComplete="off"
                         required
                         name="link"

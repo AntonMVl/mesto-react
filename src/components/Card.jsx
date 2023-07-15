@@ -1,15 +1,14 @@
-import deleteImage from "../images/icons/Delete.svg";
-import { useContext } from "react";
-import CurrentUserContext from '../contexts/CurrentUserContext'
-import { LikeButton } from "./LikeButton";
+import deleteImage from '../images/icons/Delete.svg';
+import { useContext } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import { LikeButton } from './LikeButton';
 
-
-export function Card({ card, onCardClick, onDeleteCardClick}) {
+export function Card({ card, onCardClick, onDeleteCardClick }) {
     const currentUser = useContext(CurrentUserContext);
     const isOwn = card.owner._id === currentUser._id;
-    
+
     function handleClick() {
-        onCardClick(card)
+        onCardClick(card);
     }
 
     return (
@@ -27,13 +26,18 @@ export function Card({ card, onCardClick, onDeleteCardClick}) {
                     <LikeButton card={card} />
                 </div>
             </div>
-            {isOwn && <button className="content__delete-button" onClick={()=> onDeleteCardClick(card._id)}>
-                <img
-                    src={deleteImage}
-                    alt="Удаление"
-                    className="content__delete-button-icon"
-                />
-            </button>}
+            {isOwn && (
+                <button
+                    className="content__delete-button"
+                    onClick={() => onDeleteCardClick(card._id)}
+                >
+                    <img
+                        src={deleteImage}
+                        alt="Удаление"
+                        className="content__delete-button-icon"
+                    />
+                </button>
+            )}
         </li>
     );
 }

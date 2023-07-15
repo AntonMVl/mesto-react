@@ -6,12 +6,12 @@ export function PopupWithForm({
     onClose,
     children,
     onSubmit,
-    onClickOverlay
+    onClickOverlay,
 }) {
     return (
         <section
             className={`popup popup_type_${name} ${
-                isOpen ? "popup_opened" : ""
+                isOpen ? 'popup_opened' : ''
             }`}
             onClick={onClickOverlay}
         >
@@ -26,13 +26,13 @@ export function PopupWithForm({
                     name={`${name}-container`}
                     method="post"
                     noValidate
-                    onSubmit = {onSubmit}
+                    onSubmit={onSubmit}
                 >
                     <h2 className="popup__title">{title}</h2>
                     {children}
                     <button
                         type="submit"
-                        className='popup__input-button'
+                        className="popup__input-button"
                         onClick={onClose}
                     >
                         {buttonText}

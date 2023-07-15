@@ -1,18 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import { PopupWithForm } from "./PopupWithForm";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import React, { useContext, useState, useEffect } from 'react';
+import { PopupWithForm } from './PopupWithForm';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
-export function ProfilePopup({isOpen, onClose, onUpdateUser, onClickOverlay}) {
-    const currentUser = useContext(CurrentUserContext)
+export function ProfilePopup({
+    isOpen,
+    onClose,
+    onUpdateUser,
+    onClickOverlay,
+}) {
+    const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
     function handleChangeName(evt) {
-        setName(evt.target.value)
+        setName(evt.target.value);
     }
 
     function handleChangeJob(evt) {
-        setDescription(evt.target.value)
+        setDescription(evt.target.value);
     }
 
     useEffect(() => {
@@ -26,7 +31,7 @@ export function ProfilePopup({isOpen, onClose, onUpdateUser, onClickOverlay}) {
             name,
             about: description,
         });
-    } 
+    }
 
     return (
         <PopupWithForm
@@ -43,7 +48,7 @@ export function ProfilePopup({isOpen, onClose, onUpdateUser, onClickOverlay}) {
                     <input
                         id="name"
                         type="text"
-                        className='popup__form-input popup__form-input_add_name'
+                        className="popup__form-input popup__form-input_add_name"
                         autoComplete="off"
                         required
                         minLength="2"
@@ -58,7 +63,7 @@ export function ProfilePopup({isOpen, onClose, onUpdateUser, onClickOverlay}) {
                     <input
                         id="job"
                         type="text"
-                        className='popup__form-input popup__form-input_add_job'
+                        className="popup__form-input popup__form-input_add_job"
                         autoComplete="off"
                         required
                         minLength="2"
