@@ -5,7 +5,7 @@ class Api {
         this._authorization = headers.authorization;
     }
 
-    _checkingResponse(res) {
+    _checkResponse(res) {
         if (res.ok) {
             return res.json();
         } else {
@@ -19,7 +19,7 @@ class Api {
             headers: {
                 authorization: this._authorization,
             },
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     getUser() {
@@ -28,7 +28,7 @@ class Api {
             headers: {
                 authorization: this._authorization,
             },
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     addCard(name, link) {
@@ -36,7 +36,7 @@ class Api {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({ name, link }),
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     deleteCard(cardId) {
@@ -45,7 +45,7 @@ class Api {
             headers: {
                 authorization: this._authorization,
             },
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     updateProfileInfo(name, about) {
@@ -56,7 +56,7 @@ class Api {
                 name: name,
                 about: about,
             }),
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     addLike(cardId) {
@@ -65,7 +65,7 @@ class Api {
             headers: {
                 authorization: this._authorization,
             },
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     deleteLike(cardId) {
@@ -74,7 +74,7 @@ class Api {
             headers: {
                 authorization: this._authorization,
             },
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 
     updateAvatar(data) {
@@ -84,7 +84,7 @@ class Api {
             body: JSON.stringify({
                 avatar: data,
             }),
-        }).then(this._checkingResponse);
+        }).then(this._checkResponse);
     }
 }
 

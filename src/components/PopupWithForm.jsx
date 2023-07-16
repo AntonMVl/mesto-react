@@ -1,19 +1,20 @@
+import { Popup } from './Popup';
 export function PopupWithForm({
     title,
-    name,
+    classValue,
     buttonText,
     isOpen,
     onClose,
     children,
     onSubmit,
-    onClickOverlay,
+    isAnyPopupOpen,
 }) {
     return (
-        <section
-            className={`popup popup_type_${name} ${
-                isOpen ? 'popup_opened' : ''
-            }`}
-            onClick={onClickOverlay}
+        <Popup
+            classValue={classValue}
+            isOpen={isOpen}
+            onClose={onClose}
+            isAnyPopupOpen={isAnyPopupOpen}
         >
             <div className="popup__container">
                 <button
@@ -23,22 +24,18 @@ export function PopupWithForm({
                 ></button>
                 <form
                     className="popup__form"
-                    name={`${name}-container`}
+                    name={`${classValue}-container`}
                     method="post"
                     noValidate
                     onSubmit={onSubmit}
                 >
                     <h2 className="popup__title">{title}</h2>
                     {children}
-                    <button
-                        type="submit"
-                        className="popup__input-button"
-                        onClick={onClose}
-                    >
+                    <button type="submit" className="popup__input-button">
                         {buttonText}
                     </button>
                 </form>
             </div>
-        </section>
+        </Popup>
     );
 }

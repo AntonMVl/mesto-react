@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PopupWithForm } from './PopupWithForm';
 
 export function AddPlacePopup({
@@ -23,10 +23,15 @@ export function AddPlacePopup({
         onUpdateCards({ name: imageName, link: imageLink });
     }
 
+    useEffect(() => {
+        setImageName('');
+        setImageLink('');
+    }, [onClose, isOpen]);
+
     return (
         <PopupWithForm
             title="Новое место"
-            name="add-img"
+            classValue="add-img"
             buttonText="Создать"
             isOpen={isOpen}
             onClose={onClose}
@@ -45,7 +50,7 @@ export function AddPlacePopup({
                         maxLength="30"
                         name="imageName"
                         placeholder="Название"
-                        value={imageName}
+                        value={imageName || ''}
                         onChange={handleNameChange}
                     />
                     <span id="error-place" className="popup__error"></span>
@@ -59,7 +64,7 @@ export function AddPlacePopup({
                         required
                         name="link"
                         placeholder="Ссылка на картинку"
-                        value={imageLink}
+                        value={imageLink || ''}
                         onChange={handleLinkChange}
                     />
                     <span id="error-url" className="popup__error"></span>

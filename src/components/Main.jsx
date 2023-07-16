@@ -8,8 +8,9 @@ export function Main({
     onEditProfile,
     onAddPlace,
     onEditAvatar,
-    onCardClick,
     cards,
+    onCardLike,
+    onCardClick,
     onDeleteCardClick,
 }) {
     const currentUser = useContext(CurrentUserContext);
@@ -64,12 +65,14 @@ export function Main({
                 <ul className="content__box-list">
                     {cards.map((card) => {
                         return (
-                            <Card
-                                key={card._id}
-                                card={card}
-                                onCardClick={onCardClick}
-                                onDeleteCardClick={onDeleteCardClick}
-                            />
+                            <li className="content__box" key={card._id}>
+                                <Card
+                                    card={card}
+                                    onCardLike={onCardLike}
+                                    onCardClick={onCardClick}
+                                    onDeleteCardClick={onDeleteCardClick}
+                                />
+                            </li>
                         );
                     })}
                 </ul>

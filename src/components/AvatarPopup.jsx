@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PopupWithForm } from './PopupWithForm';
 
 export function AvatarPopup({
@@ -7,6 +7,7 @@ export function AvatarPopup({
     onUpdateAvatar,
     onClickOverlay,
 }) {
+    const [avatarValue, setAvatarValue] = useState('');
     const avatarRef = useRef(null);
 
     function handleSubmit(e) {
@@ -15,6 +16,14 @@ export function AvatarPopup({
             avatar: avatarRef.current.value,
         });
     }
+
+    const handleChange = (e) => {
+        setAvatarValue(e.target.value);
+    };
+
+    useEffect(() => {
+        setAvatarValue('');
+    }, [onClose, isOpen]);
 
     return (
         <PopupWithForm
@@ -37,6 +46,8 @@ export function AvatarPopup({
                         name="avatar"
                         placeholder="Ссылка на аватар"
                         ref={avatarRef}
+                        onChange={handleChange}
+                        value={avatarValue || ''}
                     />
                     <span id="error-avatar" className="popup__error"></span>
                 </fieldset>
