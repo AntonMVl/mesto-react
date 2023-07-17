@@ -7,15 +7,9 @@ export function PopupWithForm({
     onClose,
     children,
     onSubmit,
-    isAnyPopupOpen,
 }) {
     return (
-        <Popup
-            classValue={classValue}
-            isOpen={isOpen}
-            onClose={onClose}
-            isAnyPopupOpen={isAnyPopupOpen}
-        >
+        <Popup classValue={classValue} isOpen={isOpen} onClose={onClose}>
             <div className="popup__container">
                 <button
                     type="button"

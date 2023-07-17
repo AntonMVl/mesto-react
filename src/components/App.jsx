@@ -20,7 +20,6 @@ function App(props) {
     const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
     const [deleteCard, setDeleteCard] = useState('');
-    const [isAnyPopupOpen, setIsAnyPopupOpen] = useState(false);
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
@@ -52,26 +51,6 @@ function App(props) {
         setConfirmPopupOpen(false);
         setSelectedCard({});
     }, []);
-
-    useEffect(() => {
-        if (
-            isEditProfilePopupOpen ||
-            isAddPlacePopupOpen ||
-            isEditAvatarPopupOpen ||
-            confirmPopupOpen ||
-            isImagePopupOpen
-        ) {
-            setIsAnyPopupOpen(true);
-        } else {
-            setIsAnyPopupOpen(false);
-        }
-    }, [
-        isEditProfilePopupOpen,
-        isAddPlacePopupOpen,
-        isEditAvatarPopupOpen,
-        confirmPopupOpen,
-        isImagePopupOpen,
-    ]);
 
     useEffect(() => {
         Promise.all([api.getUser(), api.getCards()])
@@ -173,7 +152,6 @@ function App(props) {
                         onCardLike={handleCardLike}
                         onCardClick={handleCardClick}
                         onDeleteCardClick={handleConfirmPopupClick}
-                        isAnyPopupOpen={isAnyPopupOpen}
                     />
                 </div>
                 <Footer />
@@ -196,13 +174,11 @@ function App(props) {
                     card={selectedCard}
                     onClose={closeAllPopups}
                     isOpen={isImagePopupOpen}
-                    isAnyPopupOpen={isAnyPopupOpen}
                 />
                 <ConfirmPopup
                     onClose={closeAllPopups}
                     isOpen={confirmPopupOpen}
                     onSubmit={handleDeleteCardSubmit}
-                    isAnyPopupOpen={isAnyPopupOpen}
                 />
             </div>
         </CurrentUserContext.Provider>

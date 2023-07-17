@@ -1,19 +1,14 @@
 import React from 'react';
 import { Popup } from './Popup';
 
-export function ConfirmPopup({ onClose, isOpen, onSubmit, isAnyPopupOpen }) {
+export function ConfirmPopup({ onClose, isOpen, onSubmit }) {
     function handleDeleteCardSubmit(e) {
         e.preventDefault();
         onSubmit();
     }
 
     return (
-        <Popup
-            classValue="delete-confirmed"
-            isOpen={isOpen}
-            onClose={onClose}
-            isAnyPopupOpen={isAnyPopupOpen}
-        >
+        <Popup classValue="delete-confirmed" isOpen={isOpen} onClose={onClose}>
             <div className="popup__container popup__container_type_delete-confirmed">
                 <button
                     type="button"

@@ -1,12 +1,6 @@
 import { useEffect } from 'react';
 
-export function Popup({
-    isAnyPopupOpen,
-    onClose,
-    classValue,
-    isOpen,
-    children,
-}) {
+export function Popup({ onClose, classValue, isOpen, children }) {
     useEffect(() => {
         const handleEscClose = (e) => {
             if (e.key === 'Escape') {
@@ -14,14 +8,14 @@ export function Popup({
             }
         };
 
-        if (isAnyPopupOpen) {
+        if (isOpen) {
             document.addEventListener('keydown', handleEscClose);
         }
 
         return () => {
             document.removeEventListener('keydown', handleEscClose);
         };
-    }, [isAnyPopupOpen, onClose]);
+    }, [isOpen, onClose]);
 
     const handleOverlayClick = (e) => {
         if (

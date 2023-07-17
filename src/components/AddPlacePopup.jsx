@@ -26,7 +26,7 @@ export function AddPlacePopup({
     useEffect(() => {
         setImageName('');
         setImageLink('');
-    }, [onClose, isOpen]);
+    }, [isOpen]);
 
     return (
         <PopupWithForm
